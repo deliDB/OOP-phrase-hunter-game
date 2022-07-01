@@ -12,9 +12,9 @@ class Game {
     
         this.phrases = [
             new Phrase('Eat my shorts'),
-            new Phrase('Yesterday all my troubles seemed so far away'),
+            new Phrase('Karma police'),
             new Phrase('Never gonna give you up'),
-            new Phrase('Your love is a one in a million'),
+            new Phrase('Sun is shining'),
             new Phrase('For a minute there I lost myself') 
         ];
 /**
@@ -95,14 +95,19 @@ class Game {
 */
     gameOver(gameWon){
         const h1 = document.querySelector('h1');
+        const overlay = document.getElementById('overlay');
+
         overlay.style.display = '';
+
          if(gameWon === false){
-            h1.classList.remove('start');
-            h1.classList.add('loss');
+            overlay.classList.remove('start');
+            overlay.classList.add('lose');
+            overlay.classList.remove('win');
             h1.innerText = 'You got this, try again!';
         } else {
-            h1.classList.remove('start');
-            h1.classList.add('win');
+            overlay.classList.remove('start');
+            overlay.classList.add('win');
+            overlay.classList.remove('lose');
             h1.innerText = 'Way to go rockstar! You win!';
         }  
     }
