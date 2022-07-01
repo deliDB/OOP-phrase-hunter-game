@@ -11,7 +11,7 @@ class Game {
         this.missed = 0;
     
         this.phrases = [
-            new Phrase('Eat my shorts'),
+            new Phrase('Go Cubs Go'),
             new Phrase('Karma police'),
             new Phrase('Never gonna give you up'),
             new Phrase('Sun is shining'),
