@@ -2,49 +2,44 @@
  * Project 4 - OOP Game App
  * app.js */
 
-
-//Creates a new instance of the Game class and add event listeners for the start button and onscreen keyboard buttons.
-
-const game = new Game();
+let game;
 const startButton = document.getElementById('btn__reset');
 const keyboard = document.getElementById('qwerty');
 
-//event listener to the "Start Game" button which creates a new Game object and starts the game by calling the startGame() method.
+//Event listener for the "Start Game" button which creates a new Game object and starts the game by calling the startGame() method.
 startButton.addEventListener('click', function(){
+    game = new Game();
+    resetGame();
     game.startGame();
 });
 
-//event listener for each of the onscreen keyboard buttons, so that clicking a button calls the handleInteraction() method on the Game object. 
-keyboard.addEventListener('click', e => {
-    const button = e.target;
-    if(button === 'BUTTON'){
-        game.handleInteraction();
-    }
-});
-/************************* Test Area ***************************
-    game.phrases.forEach((phrase, index) => {
-        console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
+/*
+* Resets gameboard between games.
+*/ 
+
+const resetGame = () => {
+    const ul = document.querySelector('ul');
+    const keys = document.querySelectorAll('.key');
+    const lostHearts = document.querySelectorAll('img[src="images/lostHeart.png"]');
+
+    ul.innerHTML = "";
+
+    [...keys].forEach(key => {
+        key.disabled = '';
+        key.className = 'key';
     });
 
-    const logPhrase = (phrase) => {
-        console.log(`Phrase - phrase:`, phrase.phrase);
-    };
-    logPhrase(game.getRandomPhrase());
-
-    game.getRandomPhrase().addPhraseToDisplay();
-
-    console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
-
-**************************************************************/
+    [...lostHearts].forEach(heart => {
+        heart.attributes.src.textContent = 'images/liveHeart.png';
+    });
 
 
+}
 
-
-
-/*
-Resetting the gameboard between games.
-After a game is completed, the gameboard needs to be reset so that clicking the "Start Game" button will successfully load a new game.
-Remove all li elements from the Phrase ul element.
-Enable all of the onscreen keyboard buttons and update each to use the key CSS class, and not use the chosen or wrong CSS classes.
-Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of the gameboard to display the liveHeart.png image.
-*/ 
+//Event listener for each of the onscreen keyboard buttons, so that clicking a button calls the handleInteraction() method on the Game object. 
+keyboard.addEventListener('click', (e) => {
+    const button = e.target;
+    if(button.tagName === 'BUTTON'){
+        game.handleInteraction(button);
+    }
+});
