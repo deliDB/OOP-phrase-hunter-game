@@ -7,25 +7,25 @@
 */
 class Phrase {
     constructor(phrase){
-        this.phrase = phrase;
+        this.phrase = phrase.toLowerCase();
     }
 
 /**
  * Adds letter placeholders to the display when the game starts. 
 */
     addPhraseToDisplay(){
-        const phraseArray = this.phrase.split('');
+        const phrase = this.phrase;
         const phraseUl = document.querySelector('#phrase ul');
-        for(let i = 0; i < phraseArray.length; i++){
-            if(phraseArray[i] === ' '){
+        for(let i = 0; i < phrase.length; i++){
+            if(phrase[i] === ' '){
                 const li = document.createElement('li');
                 li.className = 'space';
                 phraseUl.appendChild(li);
                 
             } else {
                 const li = document.createElement('li');
-                li.className = `hide letter ${phraseArray[i]} `;
-                li.textContent = `${phraseArray[i]}`;
+                li.className = `hide letter ${phrase[i]} `;
+                li.textContent = `${phrase[i]}`;
                 phraseUl.appendChild(li);
             }
         }

@@ -11,11 +11,11 @@ class Game {
         this.missed = 0;
     
         this.phrases = [
-            new Phrase('eat my shorts'),
-            new Phrase('yesterday all my troubles seemed so far away'),
-            new Phrase('never gonna give you up'),
-            new Phrase('your love is a one in a million'),
-            new Phrase('for a minute there I lost myself') 
+            new Phrase('Eat my shorts'),
+            new Phrase('Yesterday all my troubles seemed so far away'),
+            new Phrase('Never gonna give you up'),
+            new Phrase('Your love is a one in a million'),
+            new Phrase('For a minute there I lost myself') 
         ];
 /**
 * The Phrase object that’s currently in play. The initial value is null. Within the startGame() method, this property will be set to the Phrase object returned from a call to the getRandomPhrase() method.
@@ -103,7 +103,7 @@ class Game {
         } else {
             h1.classList.remove('start');
             h1.classList.add('win');
-            h1.innerText = 'Way to go rockstar!';
+            h1.innerText = 'Way to go rockstar! You win!';
         }  
     }
 }
