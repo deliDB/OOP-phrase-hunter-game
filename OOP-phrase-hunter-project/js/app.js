@@ -50,9 +50,11 @@ keyboard.addEventListener('click', (e) => {
 document.addEventListener('keyup', (e) => {
 	const key = e.key;
 	const buttons = document.querySelectorAll('.key');
-	[...buttons].forEach(button => {
-		if (button.innerText === key) {
-			game.handleInteraction(button);
-		}
-	});
+	if(overlay.style.display === 'none'){
+		[...buttons].forEach(button => {
+			if (button.innerText === key) {
+				game.handleInteraction(button);
+			}
+		});
+	}
 });
