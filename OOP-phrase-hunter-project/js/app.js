@@ -5,6 +5,8 @@
 let game;
 const startButton = document.getElementById('btn__reset');
 const keyboard = document.getElementById('qwerty');
+const buttons = document.querySelectorAll('.key');
+const h1 = document.querySelector('h1');
 
 //Event listener for the "Start Game" button which creates a new Game object and starts the game by calling the startGame() method.
 startButton.addEventListener('click', function(){
@@ -19,14 +21,16 @@ startButton.addEventListener('click', function(){
 
 const resetGame = () => {
     const ul = document.querySelector('ul');
-    const keys = document.querySelectorAll('.key');
     const lostHearts = document.querySelectorAll('img[src="images/lostHeart.png"]');
+    const h1Sibling = h1.nextElementSibling;
 
     ul.innerHTML = "";
+    h1Sibling.innerHTML = "";
+    startButton.innerText = 'Start Game';
 
-    [...keys].forEach(key => {
-        key.disabled = '';
-        key.className = 'key';
+    [...buttons].forEach(button => {
+        button.disabled = '';
+        button.className = 'key';
     });
 
     [...lostHearts].forEach(heart => {
@@ -42,4 +46,14 @@ keyboard.addEventListener('click', (e) => {
     if(button.tagName === 'BUTTON'){
         game.handleInteraction(button);
     }
+});
+
+document.addEventListener('keyup', (e) => {
+    const key = e.key;
+    const buttons = document.querySelectorAll('.key');
+    [...buttons].forEach(button => {
+        if(button.innerText === key){
+        game.handleInteraction(button);
+        }  
+    });
 });

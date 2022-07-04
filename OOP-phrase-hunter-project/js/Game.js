@@ -96,19 +96,27 @@ class Game {
     gameOver(gameWon){
         const h1 = document.querySelector('h1');
         const overlay = document.getElementById('overlay');
+        const resetBtn = document.getElementById('btn__reset');
+        const h1Sibling = h1.nextElementSibling;
 
         overlay.style.display = '';
 
-         if(gameWon === false){
+        if(gameWon === false){
             overlay.classList.remove('start');
             overlay.classList.add('lose');
             overlay.classList.remove('win');
             h1.innerText = 'You got this, try again!';
+            h1Sibling.innerHTML = 
+            `<iframe src="https://giphy.com/embed/26gs78HRO8sOuhTkQ" width="350" height="350" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`;
+            resetBtn.innerText = 'Play Again';
         } else {
             overlay.classList.remove('start');
             overlay.classList.add('win');
             overlay.classList.remove('lose');
             h1.innerText = 'Way to go rockstar! You win!';
+            h1Sibling.innerHTML = 
+            `<iframe src="https://giphy.com/embed/TfX78c0bHCS0xhHjsd" width="350" height="350" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`;
+            resetBtn.innerText = 'Play Again';
         }  
     }
 }
