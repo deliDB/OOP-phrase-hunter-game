@@ -52,7 +52,7 @@ document.addEventListener('keyup', (e) => {
 	const buttons = document.querySelectorAll('.key');
 	if(overlay.style.display === 'none'){
 		[...buttons].forEach(button => {
-			if (button.innerText === key) {
+			if (button.innerText === key && button.disabled !== true) {
 				game.handleInteraction(button);
 			}
 		});
